@@ -110,7 +110,9 @@ function CreateTable(table) {
   if (!newTable?.layout?.filter?.actions) {
     newTable.layout.filter.actions = [];
   }
-  newTable.layout.filter.actions.push(createAction);
+  if (newTable?.layout?.filter?.actions.length == 0) {
+    newTable.layout.filter.actions.push(createAction);
+  }
   deleteObjectKey(newTable, "id");
   let fs = new FS("dsl");
   if (fs.Exists(filename)) {
