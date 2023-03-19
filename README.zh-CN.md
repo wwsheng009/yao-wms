@@ -29,7 +29,7 @@ mkdir /app/path/wms/data
 mkdir /app/path/wms/logs
 
 cp /app/path/wms/.env.sample  /app/path/wms/.env
-
+```
 
 #### 项目初始化
 
