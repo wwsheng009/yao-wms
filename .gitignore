@@ -2,3 +2,5 @@
 /data
 .DS_Store
 .session
+log
+bin
