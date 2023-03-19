@@ -1,5 +1,5 @@
 {
-  "name": "supplier",
+  "name": "供应商",
   "action": {
     "bind": {
       "model": "supplier",

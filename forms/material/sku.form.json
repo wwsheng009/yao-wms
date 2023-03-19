@@ -73,8 +73,25 @@
       }
     ],
     "config": { "full": true },
-
     "form": {
+      "props": {
+        "onLoadSync": false,
+        "showSectionDivideLine": true,
+        "reference": {
+          "flatContent": {
+            "name": "物料",
+            "defaultOpen": false,
+            "payload": {
+              "width": "600px",
+              "Form": {
+                "type": "view",
+                "model": "material",
+                "id": "{{material_id}}"
+              }
+            }
+          }
+        }
+      },
       "sections": [
         {
           "title": "物资信息",
@@ -171,7 +188,6 @@
           }
         }
       },
-
       "物资": {
         "bind": "material_id",
         "edit": {

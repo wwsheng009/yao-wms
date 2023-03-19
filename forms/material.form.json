@@ -1,6 +1,10 @@
 {
   "name": "物资",
   "action": { "bind": { "model": "material" } },
+  "config": {
+    "full": true,
+    "showAnchor": true
+  },
   "layout": {
     "actions": [
       {
@@ -63,6 +67,38 @@
       }
     ],
     "form": {
+      "props": {
+        "onLoadSync": false,
+        "showSectionDivideLine": true,
+        "reference": {
+          "floatContents": [
+            {
+              "name": "类目",
+              "defaultOpen": false,
+              "payload": {
+                "width": "600px",
+                "Form": {
+                  "type": "view",
+                  "model": "material.category",
+                  "id": "{{category_id}}"
+                }
+              }
+            },
+            {
+              "name": "供应商",
+              "defaultOpen": false,
+              "payload": {
+                "width": "600px",
+                "Form": {
+                  "type": "view",
+                  "model": "supplier",
+                  "id": "{{supplier_id}}"
+                }
+              }
+            }
+          ]
+        }
+      },
       "sections": [
         {
           "title": "Section 1",
