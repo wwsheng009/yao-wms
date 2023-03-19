@@ -1,0 +1,12 @@
+{
+  "name": "规格",
+  "action": {
+    "bind": {
+      "model": "material.spec",
+      "option": {
+        "withs": {},
+        "form": "material.spec"
+      }
+    }
+  }
+}
