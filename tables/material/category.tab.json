@@ -113,11 +113,72 @@
       },
       "上级类目": {
         "bind": "parent_id",
-        "edit": {
-          "props": { "placeholder": "请输入 上级类目" },
-          "type": "InputNumber"
+        "view": {
+          "type": "Tag",
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "yao.component.SelectOptions",
+                "query": {
+                  "model": "material.category",
+                  "label": "name",
+                  "value": "id",
+                  "wheres": [
+                    {
+                      "column": "id",
+                      "op": "ne",
+                      "value": "{{id}}"
+                    },
+                    {
+                      "column": "id",
+                      "op": "ne",
+                      "value": "{{id}}"
+                    }
+                  ]
+                }
+              }
+            }
+          }
         },
-        "view": { "props": {}, "type": "Text" }
+        "edit": {
+          "type": "Select",
+          "props": {
+            "placeholder": "请输入 类目",
+            "xProps": {
+              "$search": {
+                "process": "scripts.category.Search",
+                "query": {
+                  "key": "search",
+                  "model": "material.category",
+                  "label": "name",
+                  "value": "id",
+                  "wheres": [
+                    {
+                      "column": "id",
+                      "op": "ne",
+                      "value": "{{id}}"
+                    }
+                  ]
+                }
+              },
+              "$remote": {
+                "process": "yao.component.SelectOptions",
+                "query": {
+                  "model": "material.category",
+                  "label": "name",
+                  "value": "id",
+                  "wheres": [
+                    {
+                      "column": "id",
+                      "op": "ne",
+                      "value": "{{id}}"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       },
       "创建时间": {
         "bind": "created_at",

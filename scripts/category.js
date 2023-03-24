@@ -1,3 +1,20 @@
+function Search(param) {
+  if (param.search == "") {
+    return [];
+  }
+  let wheres_object = [
+    JSON.parse(param.wheres),
+    {
+      column: "name",
+      op: "match",
+      value: param.search,
+    },
+  ];
+
+  param.wheres = wheres_object;
+  return Process("yao.component.SelectOptions", param);
+}
+
 function AfterSave(id) {
   var payload = Process("models.category.Find", id, {});
 
