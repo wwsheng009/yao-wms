@@ -14,7 +14,7 @@
       "query": {
         "debug": true,
         "select": [
-          ":datetime(day, '%Y年%m月%d日') as day",
+          ":strftime(day, '%Y年%m月%d日') as day",
           ":COUNT(id) as 数量"
         ],
         "wheres": [
