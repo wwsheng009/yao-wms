@@ -1,0 +1,202 @@
+{
+  "name": "物料规格",
+  "action": {
+    "bind": {
+      "model": "material.spec",
+      "option": {
+        "withs": {}
+      }
+    }
+  },
+  "layout": {
+    "primary": "id",
+    "actions": [
+      {
+        "title": "返回",
+        "icon": "icon-arrow-left",
+        "showWhenAdd": true,
+        "showWhenView": true,
+        "action": [
+          {
+            "name": "CloseModal",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      },
+      {
+        "title": "保存",
+        "icon": "icon-check",
+        "style": "primary",
+        "showWhenAdd": true,
+        "action": [
+          {
+            "name": "Submit",
+            "type": "Form.submit",
+            "payload": {}
+          },
+          {
+            "name": "Back",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      },
+      {
+        "icon": "icon-trash-2",
+        "style": "danger",
+        "title": "Delete",
+        "action": [
+          {
+            "name": "Confirm",
+            "type": "Common.confirm",
+            "payload": {
+              "title": "确认删除",
+              "content": "删除后不可撤销！"
+            }
+          },
+          {
+            "name": "Delete",
+            "payload": {
+              "model": "material.spec"
+            },
+            "type": "Form.delete"
+          },
+          {
+            "name": "Back",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      }
+    ],
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "name": "ID",
+              "width": 12
+            },
+            {
+              "name": "物资",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "名称"
+            },
+            {
+              "width": 12,
+              "name": "数值类型"
+            },
+            {
+              "name": "数值范围",
+              "width": 24
+            },
+            {
+              "name": "创建时间",
+              "width": 12
+            },
+            {
+              "name": "更新时间",
+              "width": 12
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "更新时间": {
+        "bind": "updated_at",
+        "edit": {
+          "type": "DatePicker",
+          "props": {
+            "disabled": true,
+            "showTime": {
+              "format": "HH:mm:ss"
+            }
+          }
+        }
+      },
+      "ID": {
+        "bind": "id",
+        "edit": {
+          "type": "InputNumber",
+          "props": {
+            "disabled": true
+          }
+        }
+      },
+      "物资": {
+        "bind": "material_id",
+        "edit": {
+          "type": "InputNumber",
+          "props": {}
+        }
+      },
+      "名称": {
+        "bind": "name",
+        "edit": {
+          "type": "Input",
+          "props": {}
+        }
+      },
+      "数值类型": {
+        "bind": "type",
+        "edit": {
+          "type": "Select",
+          "props": {
+            "options": [
+              {
+                "label": "文本",
+                "value": "文本"
+              },
+              {
+                "label": "数字",
+                "value": "数字"
+              },
+              {
+                "label": "单选",
+                "value": "单选"
+              },
+              {
+                "label": "多选",
+                "value": "多选"
+              }
+            ]
+          }
+        }
+      },
+      "数值范围": {
+        "bind": "values",
+        "edit": {
+          "props": {
+            "autoSize": {
+              "minRows": 2,
+              "maxRows": 6
+            }
+          },
+          "type": "TextArea"
+        }
+      },
+      "创建时间": {
+        "bind": "created_at",
+        "edit": {
+          "props": {
+            "disabled": true,
+            "showTime": {
+              "format": "HH:mm:ss"
+            }
+          },
+          "type": "DatePicker"
+        }
+      }
+    }
+  },
+  "config": {
+    "full": true
+  }
+}
