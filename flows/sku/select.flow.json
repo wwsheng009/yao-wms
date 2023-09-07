@@ -5,7 +5,7 @@
   "nodes": [
     {
       "name": "单品列表",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "select": ["sku.id as value", "material.name as name", "specs$"],
         "from": "$material.sku",

@@ -1,11 +1,12 @@
 {
+  "name": "demo.test",
   "label": "测试数据",
   "version": "1.0.0",
   "description": "测试数据初始化",
   "nodes": [
     { "name": "类目", "process": "flows.demo.material.category" },
     { "name": "厂商", "process": "flows.demo.supplier" },
-    { "name": "物资", "process": "flows.demo.material" },
+    { "name": "物资", "process": "flows.demo.material.data" },
     { "name": "仓库", "process": "flows.demo.warehouse" },
     { "name": "用户", "process": "flows.demo.user" },
     { "name": "计划", "process": "flows.demo.plan" },

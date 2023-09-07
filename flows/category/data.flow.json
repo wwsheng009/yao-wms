@@ -5,7 +5,7 @@
   "nodes": [
     {
       "name": "类目",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "debug": true,
         "select": [

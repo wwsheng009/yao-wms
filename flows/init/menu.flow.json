@@ -5,12 +5,12 @@
   "nodes": [
     {
       "name": "菜单项",
-      "engine": "xiang",
+      "engine": "default",
       "script": "items"
     },
     {
       "name": "清理数据",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "sql": { "stmt": "delete from `xiang_menu`" }
       }

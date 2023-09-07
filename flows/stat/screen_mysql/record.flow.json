@@ -10,7 +10,7 @@
     },
     {
       "name": "入库",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "debug": true,
         "select": [
@@ -28,7 +28,7 @@
     },
     {
       "name": "出库",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "debug": true,
         "select": [

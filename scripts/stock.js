@@ -7,9 +7,9 @@ function Find(stockid) {
     debug: true,
     select: [
       "stock.id as id",
-      "stock.uptime",
+      "stock.day",
       "stock.stock",
-      ":datetime(stock.uptime) as day", //":DATE_FORMAT(stock.uptime, '%Y年%m月%d日 %H:%i:%s') as day",
+      ":datetime(stock.day) as day", //":DATE_FORMAT(stock.day, '%Y年%m月%d日 %H:%i:%s') as day",
       "sku.id as sku_id",
       "sku.specs$ as sku_specs",
       "sku.stock as sku_stock",
@@ -101,9 +101,9 @@ function Search(query, page, pagesize) {
     debug: true,
     select: [
       "stock.id as id",
-      "stock.uptime",
+      "stock.day",
       "stock.stock",
-      ":datetime(stock.uptime) as day", //":DATE_FORMAT(stock.uptime, '%Y年%m月%d日 %H:%i:%s') as day",
+      ":datetime(stock.day) as day", //":DATE_FORMAT(stock.day, '%Y年%m月%d日 %H:%i:%s') as day",
       "sku.id as sku_id",
       "sku.specs$ as sku_specs",
       "sku.stock as sku_stock",
@@ -137,7 +137,7 @@ function Search(query, page, pagesize) {
       },
     ],
     wheres: wheres,
-    orders: "stock.uptime desc",
+    orders: "stock.day desc",
     pagesize: pagesize,
     page: page,
   });

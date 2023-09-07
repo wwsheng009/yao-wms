@@ -5,7 +5,7 @@
   "nodes": [
     {
       "name": "users",
-      "engine": "xiang",
+      "engine": "default",
       "debug": true,
       "query": {
         "select": [

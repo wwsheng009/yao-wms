@@ -10,7 +10,7 @@
     },
     {
       "name": "入库",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "select": [
           "sku_id",
@@ -34,7 +34,7 @@
     },
     {
       "name": "出库",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "select": [
           "sku_id",

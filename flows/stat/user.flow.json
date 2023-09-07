@@ -10,7 +10,7 @@
     },
     {
       "name": "统计",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "select": [
           "user_id",

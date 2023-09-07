@@ -10,7 +10,7 @@
     },
     {
       "name": "预警",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "debug": true,
         "select": [
@@ -28,7 +28,7 @@
     },
     {
       "name": "正常",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "debug": true,
         "select": [
@@ -46,7 +46,7 @@
     },
     {
       "name": "总数",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "debug": true,
         "select": [

@@ -29,7 +29,7 @@
     },
     {
       "label": "最后更新",
-      "name": "uptime",
+      "name": "day",
       "type": "datetime",
       "comment": "最后更新",
       "index": true

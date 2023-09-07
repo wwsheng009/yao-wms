@@ -5,7 +5,7 @@
   "nodes": [
     {
       "name": "记录清单",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "debug": true,
         "select": [":COUNT(id) as cnt", "sku_id"],

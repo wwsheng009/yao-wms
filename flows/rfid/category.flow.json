@@ -5,7 +5,7 @@
   "nodes": [
     {
       "name": "标签列表",
-      "engine": "xiang",
+      "engine": "default",
       "query": {
         "select": [
           ":SUBSTRING(sn, 1, 6) as value",
