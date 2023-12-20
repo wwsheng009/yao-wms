@@ -5,7 +5,7 @@
   "nodes": [
     {
       "name": "image",
-      "process": "xiang.fs.ReadFile",
+      "process": "fs.system.ReadFile",
       "args": ["{{$in.0}}", 0]
     }
   ],

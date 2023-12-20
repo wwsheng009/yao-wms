@@ -126,7 +126,7 @@ Yao.prototype.Fetch = async function (
  * @param {*} params
  */
 Yao.prototype.Token = function () {
-  var token = sessionStorage.getItem("token");
+  var token = sessionStorage.getItem("xgen:token");
 
   return JSON.parse(token).value || "";
 };

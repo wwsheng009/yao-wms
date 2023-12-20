@@ -44,7 +44,7 @@ function TaskHandle() {
 function download(id, name, num) {
   var data = Process("models.exports.find", id, {});
 
-  //var res = Process("xiang.fs.ReadFile", data.url, false);
+  //var res = Process("fs.system.ReadFile", data.url, false);
 
   return data.url;
 }

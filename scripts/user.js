@@ -32,7 +32,7 @@ function Find(id) {
   var photoData = "";
   var photoPath = user.photo.length > 0 ? user.photo[0] : null;
   if (photoPath) {
-    const photo = Process("xiang.fs.ReadFile", photoPath, true);
+    const photo = Process("fs.system.ReadFile", photoPath, true);
     if (photo.content) {
       photoData = photo.content;
     }

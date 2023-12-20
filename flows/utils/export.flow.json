@@ -15,7 +15,7 @@
     },
     {
       "name": "数据",
-      "process": "xiang.fs.ReadFile",
+      "process": "fs.system.ReadFile",
       "args": ["{{$res.文件}}", false]
     },
     {

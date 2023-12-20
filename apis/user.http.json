@@ -46,6 +46,7 @@
     {
       "path": "/all",
       "method": "GET",
+      "guard": "-",
       "process": "scripts.user.GetAllUser",
       "in": [],
       "out": { "status": 200, "type": "application/json" }
