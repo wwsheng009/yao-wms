@@ -159,3 +159,100 @@ function GetAllUser() {
     select: ["id", "name"],
   });
 }
+
+/**
+ * 自定义一个用户登录的处理器,使用用户名密码登录，不需要验证码
+ * yao run scripts.amis.user.Login
+ * @param {object} payload 用户登录信息
+ * @returns 返回登录信息
+ */
+function Login(payload) {
+  if (payload.captcha && typeof captcha === "object") {
+    const captcha = Process(
+      "yao.utils.CaptchaValidate",
+      payload.captcha.id,
+      payload.captcha.code
+    );
+    if (captcha !== true) {
+      throw new Exception("验证码不正确!", 400);
+    }
+  }
+
+  let { password, email, mobile, userName } = payload;
+
+  let user = null;
+  if (email != null) {
+    user = getUserInfo("email", email);
+  } else if (mobile != null) {
+    user = getUserInfo("mobile", email);
+  } else if (userName != null) {
+    user = getUserInfo("email", userName);
+  }
+  if (!user) {
+    throw new Exception(400, "用户不存在");
+  }
+  try {
+    const password_validate = Process(
+      "utils.pwd.Verify",
+      password,
+      user.password
+    );
+    if (password_validate !== true) {
+      throw new Exception(400, "密码不正确");
+    }
+  } catch (error) {
+    throw new Exception(400, "密码不正确");
+  }
+  const timeout = 60 * 60 * 8;
+  const sessionId = Process("utils.str.UUID");
+  let userPayload = { ...user };
+  delete userPayload.password;
+  const jwtOptions = {
+    timeout: timeout,
+    sid: sessionId,
+  };
+  const jwtClaims = { user_name: user.name };
+  //需要注意的是在这里无法生成studio的token,因为这个处理器只接受3个参数，
+  //而生成studio的token需要在第4个参数里传入secretkey
+  const jwt = Process("utils.jwt.Make", user.id, jwtClaims, jwtOptions);
+  Process("session.set", "user", userPayload, timeout, sessionId);
+  Process("session.set", "token", jwt.token, timeout, sessionId);
+  Process("session.set", "user_id", user.id, timeout, sessionId);
+
+  return {
+    sid: sessionId,
+    user: userPayload,
+    menus: Process("scripts.menu.getUserMenu"),
+    token: jwt.token,
+    expires_at: jwt.expires_at,
+  };
+}
+
+function getUserInfo(type, value) {
+  const supportTypes = {
+    email: "email",
+    mobile: "mobile",
+  };
+  if (!supportTypes[type]) {
+    throw new Exception(`Login type :${type} is not support`);
+  }
+
+  const [user] = Process("models.admin.user.get", {
+    select: [
+      "id",
+      "name",
+      "password",
+      "type",
+      "email",
+      "mobile",
+      "extra",
+      "status",
+    ],
+    wheres: [
+      { column: supportTypes[type], value: value },
+      { Column: "status", Value: "enabled" },
+    ],
+    limit: 1,
+  });
+  return user;
+}
