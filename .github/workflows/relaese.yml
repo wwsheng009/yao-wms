@@ -1,0 +1,74 @@
+name: Packed and release Yao Application
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: "Version tags"
+  push:
+    branches: [main]
+    paths:
+      - "app.yao"
+env:
+  VERSION: 1.0.0
+
+jobs:
+  release:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Get Version
+        run: |
+          VERSION=$(cat app.yao |grep version |awk -F : '{print $2}' | sed 's/"//g' | sed 's/,//g' | sed 's/ //g')
+          if [ -z "$VERSION" ]; then 
+            VERSION=1.0.0
+          fi
+          echo VERSION=$VERSION >> $GITHUB_ENV
+
+      - name: pack
+        run: |
+          rm -rf ./.git
+          rm -rf ./.github
+          zip -q -r yao-wms-${{ env.VERSION }}.zip *
+
+      # - name: Create Draft Release
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: yao-wms-${{ env.VERSION }}
+      #     release_name: yao-wms-${{ env.VERSION }}
+      #     draft: true
+      #     prerelease: false
+
+      # - uses: actions/upload-release-asset@v1.0.1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: yao-wms-${{ env.VERSION }}.zip
+      #     asset_name: yao-wms-${{ env.VERSION }}.zip
+      #     asset_content_type: application/zip
+
+      # - uses: eregon/publish-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     release_id: ${{ steps.create_release.outputs.id }}
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: yao-wms-${{ env.VERSION }}
+          files: |
+            yao-wms-${{ env.VERSION }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get Release URL
+        run: |
+          echo "Release URL: ${{ steps.create_release.outputs.upload_url }}"
