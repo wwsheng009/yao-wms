@@ -1,4 +1,4 @@
-#docker build --build-arg ARCH=amd64 --build-arg VERSION=0.10.5 --tag yao-wms-dev .
+#docker build --build-arg ARCH=amd64 --build-arg VERSION=0.10.3 --tag yao-wms-dev .
 #docker run -d --restart unless-stopped --name yao-wms-dev -p 5099:5099 yao-wms-dev
 
 ARG ARCH
